@@ -1,0 +1,54 @@
+spring:
+  # 数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/alipay?serverTimezone=GMT%2b8&useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root123
+    type: com.alibaba.druid.pool.DruidDataSource
+  # 启动配置文件
+  profiles:
+    active: dev
+  # 配置时间格式和时差问题
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    locale: zh_CN
+  # 解决json返回过程中long的精度丢失问题
+  generator:
+    write-numbers-as-strings: true
+    write-bigdecimal-as-plain: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  # 解决bean重复定义的
+  main:
+    allow-bean-definition-overriding: true
+  # dispatcherServlet 是懒加载机制,配置为1 表示提前加载
+  mvc:
+    servlet:
+      load-on-startup: 1
+
+# 日志配置管理
+logging:
+  level:
+    root: info
+
+# mybatis配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.lonely.alipay_demo.entity
+
+alipay:
+  APPID: 9021000122681047
+  RSA_PRIVATE_KEY: MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCOJKC/m2XnMPRMUfRRMxuYkSRqJ5c+c5IYatnqiT/bFKJACvCrJ+HukfEIAvYdthqCovSCa1GDe3c53xqAcBbUGYfOI2H0465eljPsn+v42VJJjEhFoxtmgCy8fXuv1YkVNXsO1tte7h3htPn/PPBB/D7jPLNc2+jXqW5+uYATYwEFcjpgzR0Zpc8qEjOU9Ks+BlFLqUoarRU7Ag2mEse+akV+zYiCNQ3I9B9TDHDUeoNV8U32IvR8BRBoA5CycYDV6VuCGrpP0s3gIXcdPh2Dvc1OLNKivrx+FmfEsWey/LmnI4ToQC/hymHtDa/Gdyesac5wL0m9evQMILtONj1vAgMBAAECggEAL/yjnCwtOeCoCP/9+E/FuDr/zSqyf63qm32vNePCAAc2Q2KuH0omlzED6018o0kwJ/w1ibYLXdUXyhzMyKGOw2ofE/OUBWW8H0icHP1cX7WWdyf52jCXdoI9GCFQ2WrAjb1xXvAgPSssQV+kqot7HPu4i2SZtPa04+HaYMPlPiXEZYbxJUpvSkwxTeKTGd65Q1Ckhs91B/mb+HGCxkdvwV158XPxzTLy+1PTGyEj7ZmtUuUiw8S7Gp9wwj8PG0kFy9wdHKZ0x1TbWn+KVpRNpA6KhOEM5VkfWYIu/eK83KeXhBiVcydu3GR1CVRqLhjWtS2uavZSJwkLzwo4gO0xgQKBgQDISFP6ODjGXxrgsVghD2CrD653eBZVo1HuLFqjLhhv/i5Hjfg6iRKJxI3ddC7JWHpOXA/qj3WPe/4iFgV7GC2bko2IemWLmIIU2obTvgRxevX52oj0P1DXm1+28AVOAYJgZk5dT0bt4tMTgXgzVzKif0KaAoHY1TBgW9QOfuIiQQKBgQC1r70VlmaspMXUoiyZOMkzbUbg7PLXr2KazCzYhO8/A+WLVaY7e06k2fXsuQ/P7TxIUMgz9m/CYet4LSFwq8Ujcet/P/4Du9INHPF3TE+8ESfVFAxyU2Rl6fNfdCozLcaexe2nqgqr4XgGR6bk2oP5y+XHESluNRJYcjMb95YTrwKBgELDCWtBTnuhvD3mH/B1Rc3/3jJoz1kgpfD0zAnVFcRPQHINuw8YHhvab0fAsM/hNHPmcE/KHnAD7wTBvnX360wOoCs8UZkk70ewSH1Qu/5v9Iqi9EAm0vXsDw3WGI6WJjWoJLsp8ATgNWgtIjpK+M/+B996snnrJsMYGSnz1cGBAoGBALNdAiNcrpJDvNYVIEhHikIN4IpPAdKyX3sIlEFQw0wHkcZDUO+p5NLUJneDnzubLgcKUQsTf/N7bdXfYAL2YJGEdoPSbffLpSuy5iLrIFA+837k4wC+mQAPvWb/rGWIDGxUZDFAqnZTCYXRmM6XdvDVPUuQAsG8/RZ570Dt5KgbAoGAWzewUWsHuW0vhA+84AB4aKe37MVASwIepn+mHHbWU756bR5h9hFCBYsvJlJ+qAkIJ/QdB/q/GdljzhuClmq4xE0+SQbfUlliHcbCxHwhGDgbYPUbYxCekstv54uFBwjbjpcOAYpG3Bh4g7KSVfMwCZK0n47rliLOG8pAVg1rLtk=
+  ALIPAY_PUBLIC_KEY: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm5v3GYRQnUPJ8e8DMlEjUlUTCHks0IqHse64f4C0l4YyW9zBoNjd80MPFdKRIU7W7RSQmqMBsIfPOsfexWrRL89IhXrAugMCTBpGXcodiar2ZNHo/2GZZWCvt1OjBn9eRdEbZ6BuWxkHR5ZIpXdPMbVf2LSaMtC0HvTiIblwY1G9bLjvWDa46p1PXwQDTt9n3IuiCo6gC5+zcicEOnoEo0IR+O0spmAsF8BO7zUcBNNiUtTNOhJiN1UvJyMqIv7mCGehDrxJi2r/wdoRAI+JqN1LbWY/8bqgP3pn2DjOCLjryP5+EUYlIxH784B6nQqDn1InRRXESjKeHVXJvle2lQIDAQAB
+  URL: https://openapi-sandbox.dl.alipaydev.com/gateway.do
+  notify_url: http://kuen5k.natappfree.cc/alipay/pay/callback
+  return_url: https://www.baidu.com
+  CHARSET: utf-8
+  FORMAT: json
+  SIGNTYPE: RSA2
+  log_path: C:/Users/kun/Downloads/logs
+  # 生成签名的格式
